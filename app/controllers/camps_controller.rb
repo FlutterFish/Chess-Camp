@@ -1,5 +1,5 @@
 class CampsController < ApplicationController
-  before_action :set_camp, only: [:show, :edit, :update, :destroy]
+  before_action :set_camp, only: [:show, :edit, :update, :destroy, :instructors]
 
   def index
     @active_camps = Camp.all.active.alphabetical.paginate(:page => params[:active_camps]).per_page(10)
@@ -38,6 +38,10 @@ class CampsController < ApplicationController
   def destroy
     @camp.destroy
     redirect_to camps_url, notice: "#{@camp.name} was removed from the system."
+  end
+
+  def instructors
+    @instructors = Instructor.for_camp(@camp).alphabetical
   end
 
   private
