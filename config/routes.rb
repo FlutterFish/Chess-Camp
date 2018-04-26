@@ -20,3 +20,11 @@ Rails.application.routes.draw do
   delete 'camps/:id/instructors/:instructor_id', to: 'camp_instructors#destroy', as: :remove_instructor
 
 end
+
+
+
+
+
+
+
+
