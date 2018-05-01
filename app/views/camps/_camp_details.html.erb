@@ -1,5 +1,5 @@
-<div class="card indigo lighten-2">
-  <div class="card-content white-text">
+<div class="card">
+  <div class="card-content">
   Camp Details
     <span class="card-title"><%=@camp.curriculum.name%></span>
 
@@ -13,10 +13,10 @@
     <p><strong>Max Enrollment: </strong><%= @camp.max_students %></p>
     <p><strong>Active: </strong><%= @camp.active ? "camp is currently active" : "camp is currently inactive." %></p>
     <p><strong>Camp: </strong>$<%= @camp.cost %>0</p>
-    <p><strong>Slots Remaining: </strong><%# @camp.max_students - @camp.registrations.count %></p>
+    <p><strong>Slots Remaining: </strong><%= @camp.max_students - @camp.registrations.count %></p>
   </div>
   <div class="card-action">
-    <%= link_to 'Edit', edit_camp_path(@camp), :class=>"btn waves-effect waves-light blue" %>
-    <%= link_to 'Back', camps_path, :class=>"btn waves-effect waves-light blue" %>
+    <%= link_to 'Edit', edit_camp_path(@camp), :class=>"btn waves-effect waves-light" %>
+    <%= link_to 'Back', camps_path, :class=>"btn waves-effect waves-light" %>
   </div>
 </div>
