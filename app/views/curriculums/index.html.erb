@@ -28,5 +28,6 @@
 </table>
 
     <% end %>
-
-<%= link_to 'New curriculum', new_curriculum_path %>
+<%= link_to(eval("new_curriculum_path"), class: "btn waves-effect waves-light") do %>
+  &nbsp;Add a New Curriculum
+<% end %>

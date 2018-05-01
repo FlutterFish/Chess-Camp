@@ -2,6 +2,9 @@
 //// Setting up a general ajax method to handle
 //// transfer of data between client and server
 ////////////////////////////////////////////////
+$(document).on('ready', function() {
+
+
 function run_ajax(method, data, link, callback=function(res){instructors.get_instructors()}){
   $.ajax({
     method: method,
@@ -100,7 +103,7 @@ var instructors = new Vue({
   },
 
   created() {
-    this.camp_id = $('#camp_id').val();
+    
   },
 
   methods: {
@@ -114,6 +117,9 @@ var instructors = new Vue({
   },
 
   mounted: function(){
+    this.camp_id = $('#camp_id').val();
     this.get_instructors();
   }
+});
+
 });

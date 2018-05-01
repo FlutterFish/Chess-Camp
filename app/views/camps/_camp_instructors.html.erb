@@ -7,7 +7,7 @@
       <ul>
         <% @instructors.each do |i| %>
           <li>
-            <%= link_to(camp_instructor_path(id: camp_instructor_id_for(@camp, i)), method: :delete, class: 'remove') do %>
+            <%= link_to(camp_instructors_path(id: camp_instructor_id_for(@camp, i)), method: :delete, class: 'remove') do %>
               x&nbsp;&nbsp;
             <% end %>
             <%= link_to i.proper_name, instructor_path(i) %>
@@ -16,7 +16,7 @@
       </ul>
     <% end %>
     <div class="card-action">
-    <%= link_to "Add a new instructor", new_camp_instructor_path(camp_id: @camp.id) %>
+    <%= link_to "Add a new instructor", create_instructor_path(camp_id: @camp.id) %>
     </div>
   </div>
 </div>
