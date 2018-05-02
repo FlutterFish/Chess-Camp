@@ -17,13 +17,21 @@ class FamiliesController < ApplicationController
 
   def create
     @user = User.new(user_params)
-    @family = Family.new(family_params)
-    @family.user_id = @user.id
-    if @family.save
-      redirect_to family_path(@family), notice: "Family #{@family.family_name} was added to the system."
+    if @user.save
+      @family = Family.new(family_params)
+      @family.user_id = @user.id
+      if @family.save
+        redirect_to family_path(@family), notice: "Family #{@family.family_name} was added to the system."
+      else
+        @user.destroy
+        @family = Family.new
+        render action: 'new'
+      end
     else
+      @family = Family.new
       render action: 'new'
     end
+    
   end
 
   def update
@@ -35,8 +43,10 @@ class FamiliesController < ApplicationController
   end
 
   def destroy
+    user = @family.user
     @family.destroy
-    redirect_to instructors_url, notice: "#Family #{@family.family_name} was deleted from the system."
+    user.destroy
+    redirect_to families_url, notice: "#Family #{@family.family_name} was deleted from the system."
   end
 
   private
