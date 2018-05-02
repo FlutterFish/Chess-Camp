@@ -18,6 +18,7 @@ Rails.application.routes.draw do
   # Routes for main resources
   resources :camps
   resources :instructors
+  resources :families
   resources :locations
   resources :curriculums
   
