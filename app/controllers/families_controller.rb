@@ -1,5 +1,7 @@
 class FamiliesController < ApplicationController
   before_action :set_family, only: [:show, :edit, :update, :destroy]
+  before_action :check_login
+  authorize_resource
 
   def index
     @families = Family.all.alphabetical.paginate(:page => params[:page]).per_page(12)
@@ -16,37 +18,38 @@ class FamiliesController < ApplicationController
   end
 
   def create
+    @family = Family.new(family_params)
     @user = User.new(user_params)
-    if @user.save
-      @family = Family.new(family_params)
+    @user.role = "parent"
+    if !@user.save
+      @family.valid?
+      render action: 'new'
+    else
       @family.user_id = @user.id
       if @family.save
-        redirect_to family_path(@family), notice: "Family #{@family.family_name} was added to the system."
+        flash[:notice] = "Family #{@family.family_name} was added to the system."
+        redirect_to family_path(@family) 
       else
-        @user.destroy
-        @family = Family.new
         render action: 'new'
-      end
-    else
-      @family = Family.new
-      render action: 'new'
+      end  
     end
     
   end
 
   def update
-    if @family.update(family_params)
-      redirect_to family_path(@family), notice: "Family #{@family.family_name} was revised in the system."
-    else
-      render action: 'edit'
+    respond_to do |format|
+      if @family.update_attributes(family_params) && @family.user.update_attributes(user_params)
+        format.html { redirect_to(@family, :notice => "Family #{@family.family_name} was revised in the system.") }
+        format.json { respond_with_bip(@family) }
+      else
+        format.html { render :action => "edit" }
+        format.json { respond_with_bip(@family) }
+      end
     end
   end
 
   def destroy
-    user = @family.user
-    @family.destroy
-    user.destroy
-    redirect_to families_url, notice: "#Family #{@family.family_name} was deleted from the system."
+    
   end
 
   private

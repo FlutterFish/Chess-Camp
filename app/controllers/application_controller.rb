@@ -1,6 +1,7 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery with: :exception
-
+  helper AppHelpers::Cart
+  
   # just show a flash message instead of full CanCan exception
   #rescue_from CanCan::AccessDenied do |exception|
   #  flash[:error] = "Sorry, but you are unauthorized to access this page."

@@ -28,6 +28,10 @@ Rails.application.routes.draw do
   post 'camps/:id/instructors', to: 'camp_instructors#create', as: :create_instructor
   delete 'camps/:id/instructors/:instructor_id', to: 'camp_instructors#destroy', as: :remove_instructor
 
+  get 'sessions/:camp_id/:student_id', to: 'sessions#addToCart', as: :add_to_cart
+  get 'sessions/:camp_id/:student_id', to: 'sessions#removeFromCart', as: :remove_from_cart
+  get 'sessions/cart', to: 'sessions#cart', as: :sessions_cart
+
   # You can have the root of your site routed with 'root'
   root 'home#index'
 end
