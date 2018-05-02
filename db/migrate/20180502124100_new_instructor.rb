@@ -13,7 +13,7 @@ class NewInstructor < ActiveRecord::Migration[5.1]
     ins.first_name = "Jennie"
     ins.last_name = "Chen"
     ins.bio = "The second best chess instructor in the world."
-    ins.user_id = admin.id
+    ins.user_id = insUser.id
     ins.save
     
   end
