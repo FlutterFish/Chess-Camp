@@ -70,10 +70,10 @@ gem 'validates_timeliness', '4.0.2'
 gem 'simple_form', '3.5.0'
 
 # Use carrierwave to upload instructor photos
-# gem 'carrierwave'
+gem 'carrierwave'
 
 # authorization gem
-# gem 'cancancan'
+gem 'cancancan'
 
 # Materialize and UI gems
 gem 'materialize-sass', '0.100.2'
