@@ -15,8 +15,8 @@ class Ability
       can :manage, User#password
       
     elsif user.role? :parent
-      can :edit, Family#own family
-      can :update, Family#own family
+      can :manage, Family#own family
+      #can :update, Family#own family
       can :manage, Student#own students
       can :manage, Registration#own registrations
       can :read, Curriculum

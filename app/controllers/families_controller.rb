@@ -11,16 +11,13 @@ class FamiliesController < ApplicationController
   end
 
   def edit
-    authorize! :edit, @family
   end
 
   def new
-    authorize! :new, Family#why CAPS?
     @family = Family.new
   end
 
   def create
-    authorize! :create, Family
     @family = Family.new(family_params)
     @user = User.new(user_params)
     @user.role = "parent"
@@ -46,7 +43,6 @@ class FamiliesController < ApplicationController
   end
 
   def update
-    authorize! :edit, @family
     respond_to do |format|
       if @family.update_attributes(family_params) && @family.user.update_attributes(user_params)
         format.html { redirect_to(@family, :notice => "Family #{@family.family_name} was revised in the system.") }
@@ -59,7 +55,6 @@ class FamiliesController < ApplicationController
   end
 
   def destroy
-    authorize! :destroy, @family
   end
 
   private
