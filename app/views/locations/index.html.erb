@@ -8,7 +8,8 @@
   <%= render :partial => "locations_list", locals: {locations: @inactive_locations, state: "Inactive"} %>
 <% end %>
 
-
-<%= link_to(eval("new_location_path"), class: "btn waves-effect waves-light") do %>
-  &nbsp;Add a New Location
+<% if can? :create, Location %>
+  <%= link_to(eval("new_location_path"), class: "btn waves-effect waves-light") do %>
+    &nbsp;Add a New Location
+  <% end %>
 <% end %>

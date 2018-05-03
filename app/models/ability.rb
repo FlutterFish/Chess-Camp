@@ -15,15 +15,17 @@ class Ability
       can :manage, User#password
       
     elsif user.role? :parent
-      can :manage, Family
-      can :manage, Student
-      can :manage, Registration
+      can :edit, Family#own family
+      can :update, Family#own family
+      can :manage, Student#own students
+      can :manage, Registration#own registrations
       can :read, Curriculum
       can :read, Location
       can :read, Camp
       
-      
     else
+      can :new, Family
+      can :create, Family
       can :read, Curriculum
       can :read, Location
       can :read, Camp

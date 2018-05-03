@@ -1,12 +1,14 @@
 class CampInstructorsController < ApplicationController
   
   def new
+    authorize! :new, @camp_instructor
     @camp_instructor   = CampInstructor.new
     @camp              = Camp.find(params[:camp_id])
     @other_instructors = @camp.instructors
   end
   
   def create
+    authorize! :new, @camp_instructor
     @camp_instructor = CampInstructor.new(camp_instructor_params)
     if @camp_instructor.save
       flash[:notice] = "Successfully added instructor."
@@ -19,6 +21,7 @@ class CampInstructorsController < ApplicationController
   end
  
   def destroy
+    authorize! :destroy, @camp_instructor
     # @camp_instructor = CampInstructor.find(params[:id])
     camp_id = params[:id]
     instructor_id = params[:instructor_id]

@@ -11,13 +11,16 @@ class InstructorsController < ApplicationController
   end
 
   def edit
+    authorize! :edit, @instructor
   end
 
   def new
+    authorize! :new, @instructor
     @instructor = Instructor.new
   end
 
   def create
+    authorize! :new, @instructor
     @instructor = Instructor.new(instructor_params)
     if @instructor.save
       redirect_to instructor_path(@instructor), notice: "#{@instructor.first_name} #{@instructor.last_name} was added to the system."
@@ -27,6 +30,7 @@ class InstructorsController < ApplicationController
   end
 
   def update
+    authorize! :edit, @instructor
     if @instructor.update(instructor_params)
       redirect_to instructor_path(@instructor), notice: "#{@instructor.first_name} #{@instructor.last_name} was revised in the system."
     else
@@ -35,6 +39,7 @@ class InstructorsController < ApplicationController
   end
 
   def destroy
+    authorize! :destroy, @instructor
     @instructor.destroy
     redirect_to instructors_url, notice: "#{@instructor.first_name} #{@instructor.last_name} was deleted from the system."
   end

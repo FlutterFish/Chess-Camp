@@ -30,7 +30,7 @@ Rails.application.routes.draw do
 
   get 'sessions/:camp_id/:student_id', to: 'sessions#addToCart', as: :add_to_cart
   get 'sessions/:camp_id/:student_id', to: 'sessions#removeFromCart', as: :remove_from_cart
-  get 'sessions/cart', to: 'sessions#cart', as: :sessions_cart
+  get 'sessions/cart', to: 'sessions#cart', as: :cart
 
   # You can have the root of your site routed with 'root'
   root 'home#index'

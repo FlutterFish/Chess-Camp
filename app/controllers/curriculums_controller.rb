@@ -11,13 +11,16 @@ class CurriculumsController < ApplicationController
   end
 
   def edit
+    authorize! :edit, @curriculum
   end
 
   def new
+    authorize! :new, @curriculum
     @curriculum = Curriculum.new
   end
 
   def create
+    authorize! :new, @curriculum
     @curriculum = Curriculum.new(curriculum_params)
     if @curriculum.save
       redirect_to curriculum_path(@curriculum), notice: "#{@curriculum.name} was added to the system."
@@ -27,6 +30,7 @@ class CurriculumsController < ApplicationController
   end
 
   def update
+    authorize! :edit, @curriculum
     @curriculum.update(curriculum_params)
     if @curriculum.save
       redirect_to curriculum_path(@curriculum), notice: "#{@curriculum.name} was revised in the system."
@@ -36,6 +40,7 @@ class CurriculumsController < ApplicationController
   end
 
   def destroy
+    authorize! :destroy, @curriculum
     @curriculum.destroy
     redirect_to curriculums_url, notice: "#{@curriculum.name} was removed from the system."
   end

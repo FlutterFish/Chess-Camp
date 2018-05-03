@@ -3,16 +3,16 @@ class ApplicationController < ActionController::Base
   helper AppHelpers::Cart
   
   # just show a flash message instead of full CanCan exception
-  #rescue_from CanCan::AccessDenied do |exception|
-  #  flash[:error] = "Sorry, but you are unauthorized to access this page."
-  #  redirect_to home_path
-  #end
+  rescue_from CanCan::AccessDenied do |exception|
+    flash[:error] = "Sorry, but you are unauthorized to access this page."
+    redirect_to home_path
+  end
 
   # handle 404 errors with an exception as well
-  #rescue_from ActiveRecord::RecordNotFound do |exception|
-  #  flash[:error] = "Sorry, but the page you requested is not found."
-  #  redirect_to home_path
-  #end
+  rescue_from ActiveRecord::RecordNotFound do |exception|
+    flash[:error] = "Sorry, but the page you requested is not found."
+    redirect_to home_path
+  end
   
   private
   # Handling authentication

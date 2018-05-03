@@ -11,7 +11,9 @@
       <th>Name</th>
       <th>Ratings</th>
       <th>Times Used</th>
+      <% if can? :update, Curriculum %>
       <th colspan="3"></th>
+      <% end %>
     </tr>
   </thead>
 
@@ -21,13 +23,17 @@
         <td><%= link_to curriculum.name, curriculum %></td>
         <td><%= curriculum.min_rating == 0 ? "Unrated" : curriculum.min_rating %> - <%= curriculum.max_rating %></td>
         <td><%= Camp.for_curriculum(curriculum.id).size %></td>
+        <% if can? :update, Curriculum %>
         <td><%= link_to 'Edit', edit_curriculum_path(curriculum), :class=>"btn waves-effect waves-light" %></td>
+        <% end %>
       </tr>
     <% end %>
   </tbody>
 </table>
 
     <% end %>
-<%= link_to(eval("new_curriculum_path"), class: "btn waves-effect waves-light") do %>
-  &nbsp;Add a New Curriculum
+<% if can? :create, Curriculum %>
+  <%= link_to(eval("new_curriculum_path"), class: "btn waves-effect waves-light") do %>
+    &nbsp;Add a New Curriculum
+  <% end %>
 <% end %>

@@ -1,6 +1,6 @@
 class FamiliesController < ApplicationController
   before_action :set_family, only: [:show, :edit, :update, :destroy]
-  before_action :check_login
+  before_action :check_login, only: [:index, :show, :edit, :update, :destroy]
   authorize_resource
 
   def index
@@ -11,13 +11,16 @@ class FamiliesController < ApplicationController
   end
 
   def edit
+    authorize! :edit, @family
   end
 
   def new
+    authorize! :new, Family#why CAPS?
     @family = Family.new
   end
 
   def create
+    authorize! :create, Family
     @family = Family.new(family_params)
     @user = User.new(user_params)
     @user.role = "parent"
@@ -28,7 +31,13 @@ class FamiliesController < ApplicationController
       @family.user_id = @user.id
       if @family.save
         flash[:notice] = "Family #{@family.family_name} was added to the system."
-        redirect_to family_path(@family) 
+        if current_user.nil?
+          redirect_to login_path
+        elsif current_user.role?(:admin)
+          redirect_to family_path(@family) 
+        else
+          redirect_to login_path
+        end
       else
         render action: 'new'
       end  
@@ -37,6 +46,7 @@ class FamiliesController < ApplicationController
   end
 
   def update
+    authorize! :edit, @family
     respond_to do |format|
       if @family.update_attributes(family_params) && @family.user.update_attributes(user_params)
         format.html { redirect_to(@family, :notice => "Family #{@family.family_name} was revised in the system.") }
@@ -49,7 +59,7 @@ class FamiliesController < ApplicationController
   end
 
   def destroy
-    
+    authorize! :destroy, @family
   end
 
   private
