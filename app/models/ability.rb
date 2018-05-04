@@ -12,6 +12,7 @@ class Ability
       can :read, Curriculum
       can :read, Location
       can :read, Camp
+      can :instructors, Camp
       
       can :show, Instructor, user_id: user.id
       can :edit, Instructor, user_id: user.id
