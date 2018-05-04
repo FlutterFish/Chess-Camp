@@ -55,6 +55,7 @@ class FamiliesController < ApplicationController
   end
 
   def destroy
+    #family can never be destroyed
   end
 
   private
