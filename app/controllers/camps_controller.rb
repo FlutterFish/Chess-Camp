@@ -1,5 +1,6 @@
 class CampsController < ApplicationController
   before_action :set_camp, only: [:show, :edit, :update, :destroy, :instructors]
+  authorize_resource
 
   def index
     @active_camps = Camp.all.active.alphabetical.paginate(:page => params[:active_camps]).per_page(10)
@@ -11,16 +12,13 @@ class CampsController < ApplicationController
   end
 
   def edit
-    authorize! :edit, @camp
   end
 
   def new
-    authorize! :new, @camp
     @camp = Camp.new
   end
 
   def create
-    authorize! :new, @camp
     @camp = Camp.new(camp_params)
     if @camp.save
       redirect_to camp_path(@camp), notice: "#{@camp.name} was added to the system."
@@ -30,7 +28,6 @@ class CampsController < ApplicationController
   end
 
   def update
-    authorize! :edit, @camp
     @camp.update(camp_params)
     if @camp.save
       redirect_to camp_path(@camp), notice: "#{@camp.name} was revised in the system."
@@ -40,7 +37,6 @@ class CampsController < ApplicationController
   end
 
   def destroy
-    authorize! :destroy, @camp
     @camp.destroy
     redirect_to camps_url, notice: "#{@camp.name} was removed from the system."
   end

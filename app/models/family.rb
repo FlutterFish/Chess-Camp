@@ -9,7 +9,7 @@ class Family < ApplicationRecord
   has_many :registrations, through: :students
 
   # scopes
-  scope :alphabetical, -> { order('family_name') }
+  scope :alphabetical, -> { order('family_name, parent_first_name') }
 
   # validations
   validates_presence_of :family_name, :parent_first_name
@@ -25,6 +25,10 @@ class Family < ApplicationRecord
   end
 
   before_update :handle_family_being_made_inactive
+  
+  def name
+    family_name + ", " + parent_first_name
+  end
 
   private
   def handle_family_being_made_inactive

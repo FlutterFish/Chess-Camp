@@ -1,2 +1,6 @@
-<h1>Students#edit</h1>
-<p>Find me in app/views/students/edit.html.erb</p>
+<h1>Editing Student</h1>
+
+<%= render 'form', student: @student %>
+
+<%= link_to 'Show', @student %> |
+<%= link_to 'Back', students_path %>

@@ -1,2 +1,11 @@
-<h1>Students#index</h1>
-<p>Find me in app/views/students/index.html.erb</p>
+<% if @students.empty? %>
+  <h3>There are no students in the system at this time</h3>
+<% else %>
+  <%= render :partial => "students_list", locals: {students: @students, state: "All"} %>
+<% end %>
+
+<% if can? :create, Student %>
+  <%= link_to(eval("new_student_path"), class: "btn waves-effect waves-light") do %>
+    &nbsp;Add a New Student
+  <% end %>
+<% end %>

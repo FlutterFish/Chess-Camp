@@ -14,11 +14,11 @@
     <!-- Partials for the topbar and navigation -->
     <%= render :partial => "partials/topbar" %>
     <% if logged_in? && current_user.role?(:admin) %>
-      <%= render :partial => "partials/nav" %>
+      <%= render :partial => "partials/nav_admin" %>
     <% elsif logged_in? && current_user.role?(:instructor) %>
-      <%= render :partial => "partials/nav" %>
+      <%= render :partial => "partials/nav_instructor" %>
     <% elsif logged_in? && current_user.role?(:parent) %>
-      <%= render :partial => "partials/nav" %>
+      <%= render :partial => "partials/nav_parent" %>
     <% else %>
       <%= render :partial => "partials/nav_guest" %>
     <% end %>
