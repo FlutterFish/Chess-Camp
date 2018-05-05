@@ -1,6 +1,11 @@
 <h4><%= @student.name %></h4>
 
 <p>
+  <strong>Family Name:</strong>
+  <%= link_to @student.family.family_name, @student.family %>
+</p>
+
+<p>
   <strong>Date of Birth:</strong>
   <%= @student.date_of_birth %>
 </p>

@@ -13,8 +13,12 @@
         </ul>
       <% end %>
       <div class="card-action">
-      <%# link_to "Add a new instructor", "#" %>
-      <%= link_to "Add a new instructor", "#", {%s(v-on:click) => "switch_modal()"} %>
+        <div v-if="modal_open">
+          <%= link_to "Cancel", "#", {%s(v-on:click) => "switch_modal()"} %>
+        </div>
+        <div v-else>
+          <%= link_to "Add a new instructor", "#", {%s(v-on:click) => "switch_modal()"} %>
+        </div>
       </div>
     </div>
   </div>
