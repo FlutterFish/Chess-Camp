@@ -8,6 +8,25 @@
 </div>
 <div class="row">
   <div class="col s12">
-    <%= render :partial => "partials/object_options", locals: {model_name: "student", object: @student} %>
+    <div class="form-actions">
+      <% if can? :index, Student %>
+        <%= link_to(eval("students_path"), class: 'waves-effect waves-light btn') do %>
+          &nbsp;Display All
+        <% end %>
+        &nbsp;&nbsp;
+      <% end %>
+      
+      <% if can? :update, Student %>
+        <%= link_to(eval("edit_student_path(@student, family_id: @student.family.id)"), class: 'waves-effect waves-light btn') do %>
+            &nbsp;<%= "Edit #{@student.proper_name}" %>
+        <% end %>
+        &nbsp;&nbsp;
+      <% end %>  
+      <% if can? :destroy, Student %>
+        <%= link_to(eval("student_path(@student)"), method: 'delete', data: {confirm: "Are you sure you want to permanently delete #{@student.proper_name}"}, class: 'waves-effect waves-light btn btn-alert') do %>
+            &nbsp;<%= "Delete #{@student.proper_name}" %>
+        <% end %>
+      <% end %>
+    </div>
   </div>
 </div>

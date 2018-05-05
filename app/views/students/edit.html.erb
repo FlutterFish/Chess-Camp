@@ -2,5 +2,9 @@
 
 <%= render 'form', student: @student %>
 
-<%= link_to 'Show', @student %> |
-<%= link_to 'Back', students_path %>
+<%= link_to 'Show', @student %>
+<% if logged_in? && current_user.role?(:admin) %>
+   | <%= link_to 'Back', students_path %>
+<% elsif logged_in? && current_user.role?(:parent) %>
+   | <%= link_to 'Back', family_path(@student.family) %>
+<% end %>

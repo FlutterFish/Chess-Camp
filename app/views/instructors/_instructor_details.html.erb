@@ -7,3 +7,6 @@
 <p><strong>Active:</strong>
   <%= @instructor.active ? "Yes" : "No" %>
 </p>
+<% unless @instructor.picture_url.nil? %>
+  <p><%= image_tag @instructor.picture_url %></p>
+<% end %>

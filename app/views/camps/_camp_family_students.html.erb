@@ -8,7 +8,7 @@
         <ul>
           <% @eligilble_students.each do |s| %>
             <li>
-              <%= link_to "+", add_to_cart_path %>
+              <%= link_to "+", new_registration_path(student_id: s.id, camp_id: @camp.id) %>
               <%= s.proper_name %>
             </li>
           <% end %>

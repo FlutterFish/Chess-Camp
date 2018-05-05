@@ -3,9 +3,10 @@
 <% else %>
   <%= render :partial => "students_list", locals: {students: @students, state: "All"} %>
 <% end %>
-
+<!--
 <% if can? :create, Student %>
   <%= link_to(eval("new_student_path"), class: "btn waves-effect waves-light") do %>
     &nbsp;Add a New Student
   <% end %>
 <% end %>
+-->

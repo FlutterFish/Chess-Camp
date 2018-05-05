@@ -16,6 +16,7 @@ class StudentsController < ApplicationController
   end
 
   def edit
+    @family = Family.find(params[:family_id])
   end
 
   def new
@@ -37,7 +38,8 @@ class StudentsController < ApplicationController
     if @student.update(student_params)
       redirect_to student_path(@student), notice: "#{@student.first_name} #{@student.last_name} was revised in the system."
     else
-      render action: 'edit'
+      @family = Family.find(params[:student][:family_id])
+      render action: 'edit', locals: { family: @family }
     end
   end
 

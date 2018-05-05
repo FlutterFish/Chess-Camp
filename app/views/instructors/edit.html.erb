@@ -2,5 +2,7 @@
 
 <%= render 'form', instructor: @instructor %>
 
-<%= link_to 'Show', @instructor %> |
-<%= link_to 'Back', instructors_path %>
+<%= link_to 'Show', @instructor %>
+<% if can? :index, Instructor %>
+| <%= link_to 'Back', instructors_path %>
+<% end %>
