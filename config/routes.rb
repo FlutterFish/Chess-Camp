@@ -1,5 +1,11 @@
 Rails.application.routes.draw do
 
+  get 'registrations/new'
+
+  get 'registrations/create'
+
+  get 'registrations/destroy'
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   # Semi-static page routes
   get 'home', to: 'home#index', as: :home

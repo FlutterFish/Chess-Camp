@@ -6,7 +6,7 @@
   		<p>You have no students to be registered at this time</p>
   	  <% else %>
         <ul>
-           <% @eligilble_students.each do |s| %>
+          <% @eligilble_students.each do |s| %>
             <li>
               <%= link_to "+", add_to_cart_path %>
               <%= s.proper_name %>
