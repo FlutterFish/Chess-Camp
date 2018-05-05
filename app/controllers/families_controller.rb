@@ -8,6 +8,7 @@ class FamiliesController < ApplicationController
   end
 
   def show
+    @students = @family.students.alphabetical
   end
 
   def edit

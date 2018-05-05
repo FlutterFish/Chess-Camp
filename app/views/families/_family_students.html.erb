@@ -1,0 +1,18 @@
+<div>
+  <div class="card">
+    <div class="card-content">
+      <span class="card-title">Students in this Family</span>
+      <% if @students.empty? %>
+  		<p>No students at this time</p>
+  	  <% else %>
+        <ul>
+           <% @students.each do |s| %>
+            <li>
+              <%= link_to s.proper_name, student_path(s) %>
+            </li>
+          <% end %>
+        </ul>
+      <% end %>
+    </div>
+  </div>
+</div>
