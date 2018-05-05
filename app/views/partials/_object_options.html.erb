@@ -1,7 +1,7 @@
 <% opt = "#{object.respond_to?(:proper_name) ? object.proper_name : (object.respond_to?(:name) ? object.name : model_name.capitalize) }" %>
   
   <div class="form-actions">
-    <% if can? :read, object %>
+    <% if can? :index, object %>
       <%= link_to(eval("#{model_name.pluralize}_path"), class: 'waves-effect waves-light btn') do %>
         &nbsp;Display All <%# model_name.pluralize.capitalize %>
       <% end %>

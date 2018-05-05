@@ -1,0 +1,19 @@
+<div>
+  <div class="card">
+    <div class="card-content">
+      <span class="card-title">Your Qualified Students</span>
+      <% if @eligilble_students.empty? %>
+  		<p>You have no students to be registered at this time</p>
+  	  <% else %>
+        <ul>
+           <% @eligilble_students.each do |s| %>
+            <li>
+              <%= link_to "+", add_to_cart_path %>
+              <%= s.proper_name %>
+            </li>
+          <% end %>
+        </ul>
+      <% end %>
+    </div>
+  </div>
+</div>

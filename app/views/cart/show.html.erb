@@ -1,0 +1,3 @@
+<% unless session[:cart].nil? || session[:cart].empty? %>
+  <%= session[:cart].map{|ci| ci.ids} %>
+<% end %>

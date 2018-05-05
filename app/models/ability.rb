@@ -27,6 +27,7 @@ class Ability
       can :edit, Family, user_id: user.id
       can :update, Family, user_id: user.id
       can :manage, Student, family_id: user.family.id
+      cannot :index, Student
       can :manage, Registration#own registrations
       can :read, Curriculum
       can :read, Camp

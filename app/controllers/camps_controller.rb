@@ -10,6 +10,13 @@ class CampsController < ApplicationController
   def show
     @instructors = @camp.instructors.alphabetical
     @students = @camp.students.alphabetical
+    if current_user.role?(:parent)
+      @family = current_user.family
+      max_rating = @camp.curriculum.max_rating
+      min_rating = @camp.curriculum.min_rating
+      @qualified_students = @family.students.below_rating(max_rating + 1).at_or_above_rating(min_rating).alphabetical
+      @eligilble_students = @qualified_students.select{|s| !@students.include?(s)}
+    end
   end
 
   def edit

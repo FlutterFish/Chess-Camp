@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
   # Semi-static page routes
   get 'home', to: 'home#index', as: :home
@@ -25,13 +26,14 @@ Rails.application.routes.draw do
   
 
   # Routes for managing camp instructors
+  
   get 'camps/:id/instructors', to: 'camps#instructors', as: :camp_instructors
   post 'camps/:id/instructors', to: 'camp_instructors#create', as: :create_instructor
   delete 'camps/:id/instructors/:instructor_id', to: 'camp_instructors#destroy', as: :remove_instructor
 
-  get 'sessions/:camp_id/:student_id', to: 'sessions#addToCart', as: :add_to_cart
-  get 'sessions/:camp_id/:student_id', to: 'sessions#removeFromCart', as: :remove_from_cart
-  get 'sessions/cart', to: 'sessions#cart', as: :cart
+  get 'cart/add', to: 'cart#addToCart', as: :add_to_cart
+  get 'cart/:camp_id/:student_id', to: 'cart#removeFromCart', as: :remove_from_cart
+  get 'cart/show', to: 'cart#show', as: :show_cart
 
   # You can have the root of your site routed with 'root'
   root 'home#index'

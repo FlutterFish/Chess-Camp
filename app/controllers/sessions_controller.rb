@@ -1,7 +1,7 @@
 class SessionsController < ApplicationController
-  CartItem = Struct.new(:camp_name, :student_name, :date, :cost, :ids)
   
   def new
+    session[:cart] ||= Array.new
   end
   
   
@@ -18,6 +18,7 @@ class SessionsController < ApplicationController
   
   def destroy
     session[:user_id] = nil
+    session[:cart] = nil
     redirect_to home_path, notice: "Logged out!"
   end
 end

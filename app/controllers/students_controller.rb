@@ -20,6 +20,7 @@ class StudentsController < ApplicationController
 
   def new
     @student = Student.new
+    @family = Family.find(params[:family_id])
   end
 
   def create
@@ -27,7 +28,8 @@ class StudentsController < ApplicationController
     if @student.save
       redirect_to student_path(@student), notice: "#{@student.first_name} #{@student.last_name} was added to the system."
     else
-      render action: 'new'
+      @family = Family.find(params[:student][:family_id])
+      render action: 'new', locals: { family: @family }
     end
   end
 
@@ -40,8 +42,13 @@ class StudentsController < ApplicationController
   end
 
   def destroy
+    @family = @student.family
     @student.destroy
-    redirect_to students_url, notice: "#{@student.first_name} #{@student.last_name} was deleted from the system."
+    if current_user.role?(:admin)
+      redirect_to students_url, notice: "#{@student.first_name} #{@student.last_name} was deleted from the system."
+    else
+      redirect_to family_path(@family), notice: "#{@student.first_name} #{@student.last_name} was deleted from the system." 
+    end
   end
   
   private
