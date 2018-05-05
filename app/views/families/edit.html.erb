@@ -1,5 +1,12 @@
-<%= render partial: "partials/form2_structure", locals: {object: @family, 
+<% if current_user.role?(:admin) %>
+  <%= render partial: "partials/form2_structure", locals: {object: @family, 
                                                         type_of_form: "Edit Family",
                                                         fields1: "family_fields",
                                                         section_2: "User Account",
+                                                   
                                                         fields2: "user_fields"} %>
+<% else %>
+  <%= render partial: "partials/form_structure", locals: {object: @family, 
+                                                        type_of_form: "Edit Profile",
+                                                        fields: "user_fields_for_family_edit"} %>
+<% end %>

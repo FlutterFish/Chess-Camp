@@ -7,7 +7,7 @@
       <ul>
         <% @instructors.each do |i| %>
           <li>
-            <%= link_to i.proper_name, instructor_path(i) %>
+            <%= i.proper_name %>
           </li>
         <% end %>
       </ul>

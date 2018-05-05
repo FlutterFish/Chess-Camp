@@ -44,13 +44,24 @@ class FamiliesController < ApplicationController
 
   def update
     respond_to do |format|
-      if @family.update_attributes(family_params) && @family.user.update_attributes(user_params)
-        format.html { redirect_to(@family, :notice => "Family #{@family.family_name} was revised in the system.") }
-        format.json { respond_with_bip(@family) }
+      if current_user.role?(:admin)
+        if @family.update_attributes(family_params) && @family.user.update_attributes(user_params)
+          format.html { redirect_to(@family, :notice => "Family #{@family.family_name} was revised in the system.") }
+          format.json { respond_with_bip(@family) }
+        else
+          format.html { render :action => "edit" }
+          format.json { respond_with_bip(@family) }
+        end
       else
-        format.html { render :action => "edit" }
-        format.json { respond_with_bip(@family) }
+        if @family.user.update_attributes(user_params)
+          format.html { redirect_to(@family, :notice => "Family #{@family.family_name} was revised in the system.") }
+          format.json { respond_with_bip(@family) }
+        else
+          format.html { render :action => "edit" }
+          format.json { respond_with_bip(@family) }
+        end
       end
+      
     end
   end
 
@@ -64,10 +75,14 @@ class FamiliesController < ApplicationController
     end
 
     def family_params
-      params.require(:family).permit(:family_name, :parent_first_name, :user_id)
+      params.require(:family).permit(:family_name, :parent_first_name, :user_id, :active)
     end
     
     def user_params
-      params.require(:family).permit(:username, :password, :password_confirmation, :email, :phone)
+      if current_user.role?(:admin)
+        params.require(:family).permit(:username, :password, :password_confirmation, :email, :phone)
+      else
+        params.require(:family).permit(:phone, :email, :password, :password_confirmation)
+      end
     end
 end

@@ -1,5 +1,13 @@
-<%= render partial: "partials/form2_structure", locals: {object: @family, 
-                                                        type_of_form: "New Family",
-                                                        fields1: "family_fields",
-                                                        section_2: "User Account",
-                                                        fields2: "user_fields"} %>
+<% if logged_in? && current_user.role?(:admin) %>
+  <%= render partial: "partials/form2_structure", locals: {object: @family, 
+                                                          type_of_form: "New Family",
+                                                          fields1: "family_fields",
+                                                          section_2: "User Account",
+                                                          fields2: "user_fields"} %>
+<% else %>
+  <%= render partial: "partials/form2_structure", locals: {object: @family, 
+                                                          type_of_form: "New Family",
+                                                          fields1: "family_fields_for_family_new",
+                                                          section_2: "User Account",
+                                                          fields2: "user_fields"} %>
+<% end %>

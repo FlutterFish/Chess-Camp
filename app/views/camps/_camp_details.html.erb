@@ -6,7 +6,7 @@
     <p><%= @camp.curriculum.description %></p>
 
     <h5>Basic Information</h5>
-    <p><strong>Location: </strong><%= @camp.location.name %></p>
+    <p><strong>Location: </strong><%= link_to @camp.location.name, location_path(@camp.location) %></p>
     <p><strong>Dates: </strong><%= @camp.start_date.strftime("%m/%d/%y") %> - <%= @camp.end_date.strftime("%m/%d/%y") %></p>
     <p><strong>Time of Day: </strong><%= @camp.time_slot == "am" ? "Morning" : "Afternoon" %></p>
     <p><strong>Chess Levels: </strong><%= @camp.curriculum.min_rating %> - <%= @camp.curriculum.max_rating %></p>

@@ -9,6 +9,7 @@ class CampsController < ApplicationController
 
   def show
     @instructors = @camp.instructors.alphabetical
+    @students = @camp.students.alphabetical
   end
 
   def edit
@@ -44,6 +45,10 @@ class CampsController < ApplicationController
   def instructors
     @instructors = Instructor.for_camp(@camp).alphabetical
   end
+  
+  #def students
+  #  @students = Student.
+  #end
 
   private
     def set_camp

@@ -1,5 +1,6 @@
 class LocationsController < ApplicationController
   before_action :set_location, only: [:show, :edit, :update, :destroy]
+  authorize_resource
 
   def index
     @active_locations = Location.all.active.alphabetical.paginate(:page => params[:page]).per_page(10)
@@ -12,16 +13,13 @@ class LocationsController < ApplicationController
   end
 
   def edit
-    authorize! :edit, @location
   end
 
   def new
-    authorize! :new, @location
     @location = Location.new
   end
 
   def create
-    authorize! :new, @location
     @location = Location.new(location_params)
     if @location.save
       redirect_to location_path(@location), notice: "#{@location.name} location was added to the system."
@@ -31,7 +29,6 @@ class LocationsController < ApplicationController
   end
 
   def update
-    authorize! :edit, @location
     if @location.update(location_params)
       redirect_to location_path(@location), notice: "#{@location.name} location was revised in the system."
     else
@@ -40,7 +37,6 @@ class LocationsController < ApplicationController
   end
 
   def destroy
-    authorize! :destroy, @location
     @location.destroy
     redirect_to locations_url, notice: "#{@location.name} location was removed from the system."
   end

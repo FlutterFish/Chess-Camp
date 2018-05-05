@@ -4,7 +4,12 @@ class StudentsController < ApplicationController
   authorize_resource
   
   def index
-    @students = Student.all.alphabetical.paginate(:page => params[:page]).per_page(12)
+    #if current_user.role?(:admin)
+      @students = Student.all.alphabetical.paginate(:page => params[:page]).per_page(12)
+    #else
+    #  @students = Student.taught_by(current_user.instructor.id).alphabetical.paginate(:page => params[:page]).per_page(12)
+    #end
+    
   end
 
   def show

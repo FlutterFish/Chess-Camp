@@ -20,23 +20,26 @@ class Ability
       can :show, User, id: user.id
       can :edit, User, id: user.id
       can :update, User, id: user.id
+      can :show, Student
       
     elsif user.role? :parent
       can :show, Family, user_id: user.id
       can :edit, Family, user_id: user.id
       can :update, Family, user_id: user.id
-      can :manage, Student#own students
+      can :manage, Student, family_id: user.family.id
       can :manage, Registration#own registrations
       can :read, Curriculum
-      can :read, Location
       can :read, Camp
+      can :instructors, Camp
+      can :show, Location
       
     else #guest
       can :new, Family
       can :create, Family
       can :read, Curriculum
-      can :read, Location
       can :read, Camp
+      can :instructors, Camp
+      can :show, Location
     end
   end
 end
