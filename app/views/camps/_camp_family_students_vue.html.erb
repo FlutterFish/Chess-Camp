@@ -1,0 +1,40 @@
+<div id="registrations">
+  <%= hidden_field_tag "camp_id", @camp.id %>
+  <div class="card">
+    <div class="card-content">
+      <span class="card-title">Registrations</span>
+      <% if @eligilble_students.empty? %>
+      <p>You have no students to be registered at this time</p>
+      <% else %>
+        <ul is='student-row' 
+            v-for="student in students" 
+            v-bind:student="student"
+            class="no_bullet">  
+        </ul>
+      <% end %>
+      <div class="card-action">
+        <div v-if="modal_open">
+          <%= link_to "Cancel", "#", {%s(v-on:click) => "switch_modal()"} %>
+        </div>
+        <div v-else>
+          <%= link_to "Add a new student", "#", {%s(v-on:click) => "switch_modal()"} %>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div v-if="modal_open">
+    <new-student-form></new-student-form>
+  </div>
+
+
+</div>  <!-- End of div#assignments -->
+
+
+
+
+<!--  much easier to include this complicated template here 
+      rather than in the js file (IMO) -->
+<script type="text/x-template" id="camp-student-form-template">
+  <%= render "camp_student_form_template" %>
+</script>

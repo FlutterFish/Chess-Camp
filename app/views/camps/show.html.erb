@@ -12,7 +12,7 @@
     <% elsif logged_in? && current_user.role?(:parent) %>
       <%= render :partial => "camp_instructors"%>
       <%= render :partial => "camp_students_no_link"%>
-      <%= render :partial => "camp_family_students"%>
+      <%= render :partial => "camp_family_students_vue"%>
     <% else %>
       <%= render :partial => "camp_instructors_no_link"%>
     <% end %>

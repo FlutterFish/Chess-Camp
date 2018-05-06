@@ -24,6 +24,7 @@ Rails.application.routes.draw do
   resources :locations
   resources :curriculums
   resources :registrations
+  resources :carts
   
 
   # Routes for managing camp instructors
@@ -32,18 +33,10 @@ Rails.application.routes.draw do
   post 'camps/:id/instructors', to: 'camp_instructors#create', as: :create_instructor
   delete 'camps/:id/instructors/:instructor_id', to: 'camp_instructors#destroy', as: :remove_instructor
 
-  get 'cart/add', to: 'cart#addToCart', as: :add_to_cart
-  get 'cart/:camp_id/:student_id', to: 'cart#removeFromCart', as: :remove_from_cart
-  get 'cart/show', to: 'cart#show', as: :show_cart
+  get 'add_to_cart', to: 'carts#add_to_cart', as: :add_to_cart
+  #get 'cart/:camp_id/:student_id', to: 'cart#removeFromCart', as: :remove_from_cart
+  #get 'carts/show', to: 'carts#show', as: :show_cart
 
   # You can have the root of your site routed with 'root'
   root 'home#index'
 end
-
-
-
-
-
-
-
-
