@@ -1,0 +1,37 @@
+<p id="notice"><%= notice %></p>
+
+<% if !session[:cart].nil? && session[:cart].empty? %>
+  <h5>Your cart is empty!</h5>
+<% else %>
+  <table>
+    <thead>
+      <tr>
+        <th>Camp Name</th>
+        <th>Student</th>
+        <th>Start Date</th>
+        <th>Cost</th>
+        <th>Options</th>
+      </tr>
+    </thead>
+    
+    <tbody>
+      <% session[:cart].each do |ci| %>
+        <tr>
+          <td><%= ci["camp_name"] %></td>
+          <td><%= ci["student_name"] %></td>
+          <td><%= ci["date"] %></td>
+          <td><%= ci["cost"] %></td>
+          <td><%= link_to "Remove", remove_from_cart_path(camp_id: ci["ids"][0], student_id: ci["ids"][1]) %></td>
+        </tr>
+      <% end %>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>Total Cost: <%= calculate_total_cart_registration_cost %></td>
+        <td><%= link_to "Checkout", checkout_summary_path %></td>
+      </tr>
+    </tbody>
+  </table>
+  <%= link_to "Clear", clear_path %>
+<% end %>

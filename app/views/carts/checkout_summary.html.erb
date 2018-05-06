@@ -1,0 +1,8 @@
+<ul>
+  <li>Items Count: <%= session[:cart].length %></li>
+  <li>Total Cost: <%= calculate_total_cart_registration_cost %></li>
+</ul>
+
+<h2>Payment Method</h2>
+
+<%= render 'form', registration: @registration %>

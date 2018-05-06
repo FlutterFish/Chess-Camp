@@ -22,6 +22,14 @@ class Instructor < ApplicationRecord
     # the easy way... 
     camp.instructors
   end
+  
+  def self.available_for(start_date, time_slot)
+    instructors_at_time = []
+    for c in Camp.at_time(start_date, time_slot)
+      instructors_at_time += c.instructors
+    end
+    return Instructor.all.alphabetical - instructors_at_time
+  end
 
   # delegates
   delegate :email, to: :user, allow_nil: true

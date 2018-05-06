@@ -4,22 +4,23 @@
     <div class="card-content">
       <span class="card-title">Registrations</span>
       <% if @eligilble_students.empty? %>
-      <p>You have no students to be registered at this time</p>
+      <p>You have no students qualified to be registered.</p>
       <% else %>
         <ul is='student-row' 
             v-for="student in students" 
             v-bind:student="student"
             class="no_bullet">  
         </ul>
+      
+        <div class="card-action">
+          <div v-if="modal_open">
+            <%= link_to "Cancel", "#", {%s(v-on:click) => "switch_modal()"} %>
+          </div>
+          <div v-else>
+            <%= link_to "Add a new student", "#", {%s(v-on:click) => "switch_modal()"} %>
+          </div>
+        </div>
       <% end %>
-      <div class="card-action">
-        <div v-if="modal_open">
-          <%= link_to "Cancel", "#", {%s(v-on:click) => "switch_modal()"} %>
-        </div>
-        <div v-else>
-          <%= link_to "Add a new student", "#", {%s(v-on:click) => "switch_modal()"} %>
-        </div>
-      </div>
     </div>
   </div>
 

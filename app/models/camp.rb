@@ -34,7 +34,7 @@ class Camp < ApplicationRecord
   scope :for_curriculum, ->(curriculum_id) { where("curriculum_id = ?", curriculum_id) }
   scope :full, -> { joins(:registrations).group(:camp_id).having('count(*) = max_students') }
   scope :empty, -> { joins("left join registrations on camps.id=registrations.camp_id").where("registrations.student_id is null") }
-
+  scope :at_time, ->(start_date, time_slot) { where('start_date = ? and time_slot = ?', start_date, time_slot) }
 
   # instance methods
   def name

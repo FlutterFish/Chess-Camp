@@ -3,7 +3,7 @@ class RegistrationsController < ApplicationController
   
   def new
     @registration = Registration.new
-    @camp = Camp.find(params[:camp_id])
+    @camp = Camp.find(params[:camp_id]).first
     @other_students = @camp.students
   end
 
@@ -31,7 +31,7 @@ class RegistrationsController < ApplicationController
   
   private
     def registration_params
-      params.require(:registration).permit(:camp_id, :student_id, :payment)
+      params.require(:registration).permit(:camp_id, :student_id, :credit_card_number, :expiration_year, :expiration_month, :payment)
     end
   
 end

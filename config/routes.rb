@@ -33,8 +33,11 @@ Rails.application.routes.draw do
   post 'camps/:id/instructors', to: 'camp_instructors#create', as: :create_instructor
   delete 'camps/:id/instructors/:instructor_id', to: 'camp_instructors#destroy', as: :remove_instructor
 
+  get 'clear', to: 'carts#clear', as: :clear
   get 'add_to_cart', to: 'carts#add_to_cart', as: :add_to_cart
-  #get 'cart/:camp_id/:student_id', to: 'cart#removeFromCart', as: :remove_from_cart
+  get 'remove_from_cart', to: 'carts#remove_from_cart', as: :remove_from_cart
+  get 'checkout_summary', to: 'carts#checkout_summary', as: :checkout_summary
+  post 'checkout', to: 'carts#checkout', as: :checkout
   #get 'carts/show', to: 'carts#show', as: :show_cart
 
   # You can have the root of your site routed with 'root'
