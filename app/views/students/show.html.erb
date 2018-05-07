@@ -3,7 +3,7 @@
     <%= render :partial => "student_details" %>
   </div>
   <div class="col s7">
-    <%=  %>
+    <%= render :partial => "partials/camps_list", locals: {camps: @upcoming_camps, state: "Upcoming"} %>
   </div>
 </div>
 <div class="row">

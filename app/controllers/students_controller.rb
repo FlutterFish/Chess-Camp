@@ -13,6 +13,7 @@ class StudentsController < ApplicationController
   end
 
   def show
+    @upcoming_camps = @student.camps.upcoming.chronological
   end
 
   def edit

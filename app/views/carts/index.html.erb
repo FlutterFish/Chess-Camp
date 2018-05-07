@@ -29,9 +29,14 @@
         <td></td>
         <td></td>
         <td>Total Cost: <%= calculate_total_cart_registration_cost %></td>
-        <td><%= link_to "Checkout", checkout_summary_path %></td>
+        <td><%= link_to(eval("checkout_summary_path"), class: 'waves-effect waves-light btn') do %>
+              &nbsp;Checkout
+            <% end %>
+        </td>
       </tr>
     </tbody>
   </table>
-  <%= link_to "Clear", clear_path %>
+  <%= link_to(eval("clear_path"), class: 'waves-effect waves-light btn') do %>
+    &nbsp;Clear
+  <% end %>
 <% end %>
