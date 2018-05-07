@@ -38,7 +38,6 @@ Rails.application.routes.draw do
   get 'remove_from_cart', to: 'carts#remove_from_cart', as: :remove_from_cart
   get 'checkout_summary', to: 'carts#checkout_summary', as: :checkout_summary
   post 'checkout', to: 'carts#checkout', as: :checkout
-  #get 'carts/show', to: 'carts#show', as: :show_cart
 
   # You can have the root of your site routed with 'root'
   root 'home#index'
