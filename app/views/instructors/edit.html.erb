@@ -1,6 +1,19 @@
 <h1>Editing Instructor</h1>
 
-<%= render 'form', instructor: @instructor %>
+<% if current_user.role?(:admin) %>
+  <%= render partial: "partials/form2_structure", locals: {object: @instructor, 
+                                                        type_of_form: "Edit Instructor",
+                                                        fields1: "instructor_fields_admin",
+                                                        section_2: "User Account",
+                                                        fields2: "user_fields_admin"} %>
+<% else %>
+  <%= render partial: "partials/form2_structure", locals: {object: @instructor, 
+                                                        type_of_form: "Edit Instructor",
+                                                        fields1: "instructor_fields",
+                                                        section_2: "User Account",
+                                                        fields2: "user_fields"} %>
+<% end %>
+
 
 <%= link_to 'Show', @instructor %>
 <% if can? :index, Instructor %>

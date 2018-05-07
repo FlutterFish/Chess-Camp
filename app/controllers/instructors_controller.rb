@@ -20,18 +20,31 @@ class InstructorsController < ApplicationController
 
   def create
     @instructor = Instructor.new(instructor_params)
-    if @instructor.save
-      redirect_to instructor_path(@instructor), notice: "#{@instructor.first_name} #{@instructor.last_name} was added to the system."
-    else
+    @user = User.new(user_params)
+    @user.role = "parent"
+    if !@user.save
+      @instructor.valid?
       render action: 'new'
+    else
+      @instructor.user_id = @user.id
+      if @instructor.save
+        flash[:notice] = "Instructor #{@instructor.name} was added to the system."
+        redirect_to instructor_path(@instructor) 
+      else
+        render action: 'new'
+      end  
     end
   end
 
   def update
-    if @instructor.update(instructor_params)
-      redirect_to instructor_path(@instructor), notice: "#{@instructor.first_name} #{@instructor.last_name} was revised in the system."
-    else
-      render action: 'edit'
+    respond_to do |format|
+      if @instructor.update_attributes(instructor_params) && @instructor.user.update_attributes(user_params)
+        format.html { redirect_to(@instructor, :notice => "Instructor #{@instructor.name} was revised in the system.") }
+        format.json { respond_with_bip(@instructor) }
+      else
+        format.html { render :action => "edit" }
+        format.json { respond_with_bip(@instructor) }
+      end
     end
   end
 
@@ -46,6 +59,18 @@ class InstructorsController < ApplicationController
     end
 
     def instructor_params
-      params.require(:instructor).permit(:first_name, :last_name, :bio, :user_id, :email, :phone, :picture, :active)
+      if current_user.role?(:admin)
+        params.require(:instructor).permit(:first_name, :last_name, :bio, :user_id, :picture, :active)
+      else
+        params.require(:instructor).permit(:bio, :picture)
+      end
+    end
+    
+    def user_params
+      if current_user.role?(:admin)
+        params.require(:instructor).permit(:username, :password, :password_confirmation, :email, :phone, :active)
+      else
+        params.require(:instructor).permit(:phone, :email, :password, :password_confirmation)
+      end
     end
 end

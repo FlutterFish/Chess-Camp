@@ -20,7 +20,16 @@ class Ability
       can :show, User, id: user.id
       can :edit, User, id: user.id
       can :update, User, id: user.id
-      can :show, Student
+      can :show, Student do |s|
+        my_students = user.instructor.camps.map{|c| c.students}.flatten
+        my_student_ids = my_students.map{|s1| s1.id}
+        my_student_ids.include? s.id
+      end
+      can :show, Family do |f|
+        my_students = user.instructor.camps.map{|c| c.students}.flatten
+        my_family_ids = my_students.map{|s| s.family.id}
+        my_family_ids.include? f.id
+      end
       
     elsif user.role? :parent
       can :show, Family, user_id: user.id
@@ -28,7 +37,6 @@ class Ability
       can :update, Family, user_id: user.id
       can :manage, Student, family_id: user.family.id
       cannot :index, Student
-      can :manage, Registration#own registrations
       can :read, Curriculum
       can :read, Camp
       can :instructors, Camp
