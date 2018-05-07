@@ -21,7 +21,7 @@ class InstructorsController < ApplicationController
   def create
     @instructor = Instructor.new(instructor_params)
     @user = User.new(user_params)
-    @user.role = "parent"
+    @user.role = "instructor"
     if !@user.save
       @instructor.valid?
       render action: 'new'
@@ -60,7 +60,7 @@ class InstructorsController < ApplicationController
 
     def instructor_params
       if current_user.role?(:admin)
-        params.require(:instructor).permit(:first_name, :last_name, :bio, :user_id, :picture, :active)
+        params.require(:instructor).permit(:first_name, :last_name, :bio, :picture, :active)
       else
         params.require(:instructor).permit(:bio, :picture)
       end
