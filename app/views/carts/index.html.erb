@@ -1,7 +1,27 @@
 <p id="notice"><%= notice %></p>
 
-<% if !session[:cart].nil? && session[:cart].empty? %>
-  <h5>Your cart is empty!</h5>
+<% if session[:cart].nil? || session[:cart].empty? %>
+  <h4>Your cart is empty!</h4>
+  <table>
+    <thead>
+      <tr>
+        <th>Camp Name</th>
+        <th>Student</th>
+        <th>Start Date</th>
+        <th>Cost</th>
+        <th>Options</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td></td>
+        <td></td>
+        <td></td>
+        <td>Total Cost: <%= calculate_total_cart_registration_cost %></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
 <% else %>
   <table>
     <thead>
@@ -17,8 +37,8 @@
     <tbody>
       <% session[:cart].each do |ci| %>
         <tr>
-          <td><%= ci["camp_name"] %></td>
-          <td><%= ci["student_name"] %></td>
+          <td><%= link_to ci["camp_name"], camp_path(ci["ids"][0]) %></td>
+          <td><%= link_to ci["student_name"], student_path(ci["ids"][1]) %></td>
           <td><%= ci["date"] %></td>
           <td><%= ci["cost"] %></td>
           <td><%= link_to "Remove", remove_from_cart_path(camp_id: ci["ids"][0], student_id: ci["ids"][1]) %></td>

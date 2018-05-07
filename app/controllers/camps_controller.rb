@@ -14,8 +14,25 @@ class CampsController < ApplicationController
       @family = current_user.family
       max_rating = @camp.curriculum.max_rating
       min_rating = @camp.curriculum.min_rating
+      students_busy_at_this_time = []
+      for c in Camp.at_time(@camp.start_date, @camp.time_slot)
+        students_busy_at_this_time += c.students
+      end
+      #adding students in the cart with conflicting schedule 
+      #to students_busy_at_this_time
+      unless (session[:cart].nil? || session[:cart].empty?)
+        session[:cart].each do |ci|
+          ciCampId = ci["ids"][0].to_i
+          ciStudentId = ci["ids"][1].to_i
+          if (Camp.at_time(@camp.start_date, @camp.time_slot).map{|c1| c1.id}.include?(ciCampId))
+            ciStudent = Student.where(id: ciStudentId)
+            students_busy_at_this_time += ciStudent
+          end
+          
+        end
+      end
       @qualified_students = @family.students.below_rating(max_rating + 1).at_or_above_rating(min_rating).alphabetical
-      @eligilble_students = @qualified_students.select{|s| !@students.include?(s)}
+      @eligilble_students = @qualified_students.select{|s| !@students.include?(s)} - students_busy_at_this_time
     end
   end
 

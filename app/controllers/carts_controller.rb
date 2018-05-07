@@ -9,6 +9,7 @@ class CartsController < ApplicationController
   end
   
   def checkout
+    error = false
     session[:cart].each do |ci|
       @registration = Registration.new(registration_params)
       @registration.expiration_year = @registration.expiration_year.to_i
@@ -18,11 +19,15 @@ class CartsController < ApplicationController
       if @registration.save
         
       else
-        redirect_to checkout_summary_path, notice: "Credit card information is invalid."
+        error = true
       end
     end
-    clear_cart
-    redirect_to family_path(current_user.family)
+    if (error)
+      redirect_to checkout_summary_path, notice: "Credit card information is invalid."
+    else
+      clear_cart
+      redirect_to family_path(current_user.family)
+    end
   end
   
   def clear
