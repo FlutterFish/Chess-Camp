@@ -26,7 +26,11 @@ class CartsController < ApplicationController
       redirect_to checkout_summary_path, notice: "Credit card information is invalid."
     else
       clear_cart
-      redirect_to family_path(current_user.family)
+      if current_user.role?(:parent)
+        redirect_to family_path(current_user.family), notice: "Your payment was successful."
+      else
+        redirect_to camps_path, notice: "Registration(s) created."
+      end
     end
   end
   

@@ -6,6 +6,7 @@
     <% if logged_in? && current_user.role?(:admin) %>
       <%= render :partial => "camp_instructors_vue"%>
       <%= render :partial => "camp_students"%>
+      <%= render :partial => "camp_family_students_vue"%>
     <% elsif logged_in? && current_user.role?(:instructor) %>
       <%= render :partial => "camp_instructors_no_link"%>
       <%= render :partial => "camp_students"%>
