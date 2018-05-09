@@ -3,14 +3,26 @@
     <div class="card-content">
       <span class="card-title">Registered Students</span>
       <% if @students.empty? %>
-  		<p>No registered students at this time</p>
+  		  <p>No registered students at this time</p>
   	  <% else %>
-        <ul>
-           <% @students.each do |s| %>
-            <li>
-              <%= link_to s.proper_name, student_path(s) %>
-            </li>
-          <% end %>
+    	  <table>
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Age</th>
+              <th>Rating</th>
+            </tr>
+          </thead>
+          <tbody>
+            <% @students.each do |s| %>
+              <tr>
+                <td><%= link_to s.proper_name, student_path(s) %></td>
+                <td><%= s.age %></td>
+                <td><%= s.rating %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
         </ul>
       <% end %>
     </div>

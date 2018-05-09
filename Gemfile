@@ -77,6 +77,9 @@ gem 'carrierwave'
 # authorization gem
 gem 'cancancan'
 
+# highcharts for rails
+gem "highcharts-rails"
+
 # Materialize and UI gems
 gem 'materialize-sass', '0.100.2'
 gem 'materialize-form', '1.0.8'

@@ -16,11 +16,16 @@
     </div>
   </div>
 </div>
+
 <br/>
 <%= link_to(eval("family_path(@family)"), class: "btn waves-effect waves-light") do %>
-  &nbsp;My Profile
+  My Family
 <% end %>
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 <%= link_to(eval("new_student_path(family_id: @family.id)"), class: "btn waves-effect waves-light") do %>
-  &nbsp;Add a Child
+  Add a Child
+<% end %>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<%= link_to(eval("camps_path"), class: "btn waves-effect waves-light") do %>
+  Register More Camps!
 <% end %>
