@@ -1,0 +1,83 @@
+<script>
+var l1 = 0;
+var l2 = 0;
+var l3 = 0;
+var l4 = 0;
+<% Registration.all.each do |r| %>
+	<% if r.camp.location.name == "ACAC" %>
+		l1 += 1;
+	<% elsif r.camp.location.name == "Carnegie Mellon" %>
+		l2 += 1;	
+	<% elsif r.camp.location.name == "North Side" %>
+		l3 += 1;	
+	<% elsif r.camp.location.name == "Squirrel Hill" %>
+		l4 += 1;
+	<% end %>
+<% end %>
+$(function() {
+	$('#registration-by-location-graph').highcharts({
+  	chart: {
+  			type: 'column'
+		},
+
+		title: {
+ 			text: "Registeration by Location"
+ 		},
+
+ 		xAxis: {
+ 			type: 'category',
+  		labels: {
+      		rotation: -45,
+      		style: {
+          		fontSize: '13px',
+          		fontFamily: 'Verdana, sans-serif'
+      		}
+  		}
+		},
+		yAxis: {
+  		min: 0,
+  		title: {
+      		text: 'Number Registered'
+  		}
+		},
+
+		tooltip: {
+  		pointFormat: 'Students Registered for this location: <b>{point.y:.f} students</b>'
+		},
+
+		plotOptions: {
+ 				pie: {
+      			allowPointSelect: true,
+      			cursor: 'pointer',
+      			dataLabels: {
+          			enabled: true,
+          			format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+          			style: {
+              		color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+          			}
+      				}
+  				}
+		},
+
+ 		series: [{
+  		name: 'Locations',
+  		colorByPoint: true,
+
+  		data: [{
+      		name: 'ACAC',
+      		y: l1,
+      		selected: true
+  			}, {
+      		name: 'Carnegie Mellon',
+      		y: l2
+  			}, {
+      		name: 'North Side',
+      		y: l3
+  			}, {
+      		name: 'Squirrel Hill',
+      		y: l4
+  			}]
+		}]	
+	});
+});
+</script>

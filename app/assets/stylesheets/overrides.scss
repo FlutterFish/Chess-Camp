@@ -6,6 +6,10 @@ html {
   // font-family: 'Varela Round', sans-serif;
 }
 
+i.icon-red {
+    color: red;
+}
+
 /********** TOPBAR & NAV ********/
 #topbar {
   background-color: #292c31; //dark grey;
@@ -68,12 +72,14 @@ table.striped > tbody > tr:nth-child(odd) {
 }
 
 table.striped > tbody > tr:nth-child(even) {
-  background-color: #fff4ec; //grain-white
+  background-color: #eceff1; //blue-grey
+                    //#fff4ec; //grain-white
                     //#fffde7; //light yellow
 }
 
 table.highlight > tbody > tr:hover {
-  background-color: #ffd1b3; //darker grain
+  background-color: #e0e0e0 ;
+                    //#ffd1b3; //darker grain
                     //#fff59d; //yellow
 }
 

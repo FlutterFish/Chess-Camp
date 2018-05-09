@@ -4,13 +4,13 @@
   <p id="notice"><%= notice %></p>
   <h3><%= state %> Registrations</h3>
 
-  <table>
+  <table class="striped highlight">
     <thead>
       <tr>
         <th>Camp Name</th>
         <th>Student Name</th>
         <th>Start Date</th>
-        <th colspan="3"></th>
+        <th>Options</th>
       </tr>
     </thead>
 
@@ -21,8 +21,8 @@
           <td><%= link_to reg.student.name, student_path(reg.student) %></td>
           <td><%= display_date(reg.camp.start_date) %></td>
           <td>
-            <%= link_to(eval("registration_path(reg)"), method: 'delete', data: {confirm: "Are you sure you want to permanently delete this registration?"}, class: 'waves-effect waves-light btn btn-alert') do %>
-                &nbsp;<%= "Remove" %>
+            <%= link_to(eval("registration_path(reg)"), method: 'delete', data: {confirm: "Are you sure you want to permanently delete this registration?"}) do %>
+              <i class="material-icons icon-red">delete_forever</i>
             <% end %>
           </td>
         </tr>

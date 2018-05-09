@@ -15,13 +15,13 @@ var c4 = 0;
 	<% end %>
 <% end %>
 $(function() {
-	$('#camp-demand-graph').highcharts({
+	$('#registration-by-curriculum-graph').highcharts({
   	chart: {
   			type: 'column'
 		},
 
 		title: {
- 			text: "Registeration by Camp"
+ 			text: "Registeration by Curriculum"
  		},
 
  		xAxis: {
@@ -42,7 +42,7 @@ $(function() {
 		},
 
 		tooltip: {
-  		pointFormat: 'Students Registered for this camp: <b>{point.y:.f} students</b>'
+  		pointFormat: 'Students Registered for this curriculum: <b>{point.y:.f} students</b>'
 		},
 
 		plotOptions: {
@@ -60,7 +60,7 @@ $(function() {
 		},
 
  		series: [{
-  		name: 'Months',
+  		name: 'Curriculums',
   		colorByPoint: true,
 
   		data: [{

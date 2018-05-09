@@ -4,14 +4,14 @@
   <p id="notice"><%= notice %></p>
   <h3><%= state %> Locations</h3>
 
-  <table>
+  <table class="striped highlight">
     <thead>
       <tr>
         <th>Name</th>
         <th>Address</th>
         <th>Max Capacity</th>
         <% if can? :update, Location %>
-        <th colspan="3"></th>
+        <th>Options</th>
         <% end %>
       </tr>
     </thead>
@@ -23,7 +23,11 @@
           <td><%= render :partial => "partials/address_info", locals: {location: location} %></td>
           <td><%= location.max_capacity %></td>
           <% if can? :update, Location %>
-          <td><%= link_to 'Edit', edit_location_path(location), :class=>"btn waves-effect waves-light" %></td>
+          <td>
+          <%= link_to edit_location_path(location) do %>
+            <i class="material-icons">edit</i>
+          <% end %>
+        </td>
           <% end %>
         </tr>
       <% end %>

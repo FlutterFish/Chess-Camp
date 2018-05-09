@@ -28,7 +28,7 @@ class CartsController < ApplicationController
     else
       clear_cart
       if current_user.role?(:parent)
-        redirect_to family_path(current_user.family), notice: "Your payment was successful."
+        redirect_to dashboard_path, notice: "Your payment was successful."
       else
         redirect_to camps_path, notice: "Registration(s) created."
       end

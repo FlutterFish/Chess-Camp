@@ -1,11 +1,23 @@
-<ul>
-  <li>Items Count: <%= session[:cart].length %></li>
-  <li>Total Cost: <%= calculate_total_cart_registration_cost %></li>
-</ul>
+<div class="row">
+  <div class="card blue-grey lighten-5 col s8">
+    <div class="card-content">
+      <h3>Payment Method</h3>
+      <%= render 'form', registration: @registration %>
+    </div>
+  </div>
+  
+  <div class="card yellow lighten-5 col s3 right">
+    <div class="card-content">
+      <h3>Summary</h3>
+      <ul>
+        <li>Items Count: <%= session[:cart].length %></li>
+        <li>Total Cost: <%= calculate_total_cart_registration_cost %></li>
+      </ul>
+    </div>
+  </div>
+</div>
 
-<h2>Payment Method</h2>
-
-<%= render 'form', registration: @registration %>
+<br/>
 <%= link_to(eval("carts_path"), class: "btn waves-effect waves-light") do %>
   Back
 <% end %>

@@ -41,7 +41,11 @@
           <td><%= link_to ci["student_name"], student_path(ci["ids"][1]) %></td>
           <td><%= display_date(ci["date"].to_date) %></td>
           <td><%= ci["cost"] %></td>
-          <td><%= link_to "Remove", remove_from_cart_path(camp_id: ci["ids"][0], student_id: ci["ids"][1]) %></td>
+          <td>
+            <%= link_to remove_from_cart_path(camp_id: ci["ids"][0], student_id: ci["ids"][1]) do %>
+              <i class="material-icons">delete</i>
+            <% end %>
+          </td>
         </tr>
       <% end %>
       <tr>
