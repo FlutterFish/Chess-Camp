@@ -11,10 +11,10 @@
 // about supported directives.
 //
 //= require jquery
-//= require highcharts
-//= require highcharts/highcharts-more
 //= require rails-ujs
 //= require materialize-sprockets
 //= require materialize-form
 //= require vue
 //= require_tree .
+//= require highcharts
+//= require highcharts/highcharts-more
