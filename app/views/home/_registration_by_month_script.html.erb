@@ -1,16 +1,43 @@
 <script>
-var m1 = <%= Registration.select{|r| r.camp.start_date.strftime("%m").to_s == "01"}.size%>;
-var m2 = <%= Registration.select{|r| r.camp.start_date.strftime("%m").to_s == "02"}.size%>;
-var m3 = <%= Registration.select{|r| r.camp.start_date.strftime("%m").to_s == "03"}.size%>;
-var m4 = <%= Registration.select{|r| r.camp.start_date.strftime("%m").to_s == "04"}.size%>;
-var m5 = <%= Registration.select{|r| r.camp.start_date.strftime("%m").to_s == "05"}.size%>;
-var m6 = <%= Registration.select{|r| r.camp.start_date.strftime("%m").to_s == "06"}.size%>;
-var m7 = <%= Registration.select{|r| r.camp.start_date.strftime("%m").to_s == "07"}.size%>;
-var m8 = <%= Registration.select{|r| r.camp.start_date.strftime("%m").to_s == "08"}.size%>;
-var m9 = <%= Registration.select{|r| r.camp.start_date.strftime("%m").to_s == "09"}.size%>;
-var m10 = <%= Registration.select{|r| r.camp.start_date.strftime("%m").to_s == "10"}.size%>;
-var m11 = <%= Registration.select{|r| r.camp.start_date.strftime("%m").to_s == "11"}.size%>;
-var m12 = <%= Registration.select{|r| r.camp.start_date.strftime("%m").to_s == "12"}.size%>;
+var m1 = 0;
+var m2 = 0;
+var m3 = 0;
+var m4 = 0;
+var m5 = 0;
+var m6 = 0;
+var m7 = 0;
+var m8 = 0;
+var m9 = 0;
+var m10 = 0;
+var m11 = 0;
+var m12 = 0;
+<% Registration.all.each do |r| %>
+	<% if r.camp.start_date.strftime("%m").to_s == "01" %>
+		m1 += 1;
+	<% elsif r.camp.start_date.strftime("%m").to_s == "02" %>
+		m2 += 1;	
+	<% elsif r.camp.start_date.strftime("%m").to_s == "03" %>
+		m3 += 1;	
+	<% elsif r.camp.start_date.strftime("%m").to_s == "04" %>
+		m4 += 1;	
+	<% elsif r.camp.start_date.strftime("%m").to_s == "05" %>
+		m5 += 1;	
+	<% elsif r.camp.start_date.strftime("%m").to_s == "06" %>
+		m6 += 1;		
+	<% elsif r.camp.start_date.strftime("%m").to_s == "07" %>
+		m7 += 1;
+	<% elsif r.camp.start_date.strftime("%m").to_s == "08" %>
+		m8 += 1;
+	<% elsif r.camp.start_date.strftime("%m").to_s == "09" %>
+		m9 += 1;		
+	<% elsif r.camp.start_date.strftime("%m").to_s == "10" %>
+		m10 += 1;		
+	<% elsif r.camp.start_date.strftime("%m").to_s == "11" %>
+		m11 += 1;		
+	<% elsif r.camp.start_date.strftime("%m").to_s == "12" %>
+		m12 += 1;		
+	<% end %>
+<% end %>
 $(function() {
 	$('#registration-by-month-graph').highcharts({
   	chart: {

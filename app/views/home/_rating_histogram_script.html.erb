@@ -1,0 +1,43 @@
+<script>
+var data = <%= Student.all.map{|s| s.rating}.to_a %>;
+
+$(function() {
+	$('#rating-histogram').highcharts({
+    title: {
+        text: 'Student Rating Histogram'
+    },
+    xAxis: [{
+        alignTicks: false,
+        visible: false
+    }, {
+    		title: { text: 'Rating Range' },
+        alignTicks: false
+    }],
+
+    yAxis: [{
+        title: { text: 'Rating' }
+    }, {
+        title: { text: 'Percentage' },
+        opposite: true
+    }],
+
+    series: [{
+        name: 'Histogram',
+        type: 'histogram',
+        xAxis: 1,
+        yAxis: 1,
+        baseSeries: 1,
+        zIndex: -1
+    }, {
+        name: 'Data',
+        type: 'scatter',
+        data: data,
+        id: 's1',
+        marker: {
+            radius: 1.5
+        }
+        
+    }]
+	});
+});
+</script>

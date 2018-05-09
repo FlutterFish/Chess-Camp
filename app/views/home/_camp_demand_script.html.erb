@@ -1,0 +1,83 @@
+<script>
+var c1 = 0;
+var c2 = 0;
+var c3 = 0;
+var c4 = 0;
+<% Registration.all.each do |r| %>
+	<% if r.camp.name == "Endgame Principles" %>
+		c1 += 1;
+	<% elsif r.camp.name == "Mastering Chess Tactics" %>
+		c2 += 1;	
+	<% elsif r.camp.name == "Nimzo-Indian Defense" %>
+		c3 += 1;	
+	<% elsif r.camp.name == "Principles of Chess" %>
+		c4 += 1;
+	<% end %>
+<% end %>
+$(function() {
+	$('#camp-demand-graph').highcharts({
+  	chart: {
+  			type: 'column'
+		},
+
+		title: {
+ 			text: "Registeration by Camp"
+ 		},
+
+ 		xAxis: {
+ 			type: 'category',
+  		labels: {
+      		rotation: -45,
+      		style: {
+          		fontSize: '13px',
+          		fontFamily: 'Verdana, sans-serif'
+      		}
+  		}
+		},
+		yAxis: {
+  		min: 0,
+  		title: {
+      		text: 'Number Registered'
+  		}
+		},
+
+		tooltip: {
+  		pointFormat: 'Students Registered for this camp: <b>{point.y:.f} students</b>'
+		},
+
+		plotOptions: {
+ 				pie: {
+      			allowPointSelect: true,
+      			cursor: 'pointer',
+      			dataLabels: {
+          			enabled: true,
+          			format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+          			style: {
+              		color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+          			}
+      				}
+  				}
+		},
+
+ 		series: [{
+  		name: 'Months',
+  		colorByPoint: true,
+
+  		data: [{
+      		name: 'Endgame Principles',
+      		y: c1,
+      		selected: true
+  			}, {
+      		name: 'Mastering Chess Tactics',
+      		y: c2
+  			}, {
+      		name: 'Nimzo-Indian Defense',
+      		y: c3
+  			}, {
+      		name: 'Principles of Chess',
+      		y: c4
+  			}]
+		}]	
+	});
+});
+</script>

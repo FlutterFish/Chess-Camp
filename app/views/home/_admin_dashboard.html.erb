@@ -1,2 +1,29 @@
-<%= render "admin_script" %>
-<div id="registration-by-month-graph" style="min-width: 300px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+<h3>Dashboard</h3>
+
+<%= render "registration_by_month_script" %>
+<%= render "rating_histogram_script" %>
+<%= render "camp_demand_script" %>
+
+<div class="row">
+  <div class="col s6">
+    <div id="registration-by-month-graph" style="min-width: 300px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+  </div>
+  <div class="col s6">
+    <div id="rating-histogram" style="min-width: 300px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+  </div>
+</div>
+
+<div class="row">
+  <div class="col s6">
+    <div id="camp-demand-graph" style="min-width: 300px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+  </div>
+</div>
+
+<br/>
+<%= link_to(eval("registrations_path"), class: "btn waves-effect waves-light") do %>
+  Check Registrations
+<% end %>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<%= link_to(eval("new_camp_path"), class: "btn waves-effect waves-light") do %>
+  Add a New Camp
+<% end %>

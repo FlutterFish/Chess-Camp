@@ -19,7 +19,7 @@
         <tr>
           <td><%= link_to reg.camp.name, camp_path(reg.camp) %></td>
           <td><%= link_to reg.student.name, student_path(reg.student) %></td>
-          <td><%= reg.camp.start_date %></td>
+          <td><%= display_date(reg.camp.start_date) %></td>
           <td>
             <%= link_to(eval("registration_path(reg)"), method: 'delete', data: {confirm: "Are you sure you want to permanently delete this registration?"}, class: 'waves-effect waves-light btn btn-alert') do %>
                 &nbsp;<%= "Remove" %>

@@ -1,15 +1,14 @@
 <%= simple_form_for(@registration, :url => checkout_path) do |f| %>
   <%= f.error_notification %>
   <div class="row">
-    <div class="form-inputs">
+    <div class="form-inputs col s7">
       <%= f.input :credit_card_number, label_html: { class: 'active' } %>
       <%= f.input :expiration_year, label_html: { class: 'active' } %>
       <%= f.input :expiration_month, label_html: { class: 'active' } %>
     </div>
-  </div>
-  <div class="row">
-    <div class="form-actions col s8">
-      <%= f.button :submit, "Pay" %>
+    <div class="form-actions col s5">
+      <%= f.button :submit, "Pay Now" %>
     </div>
   </div>
+    
 <% end %>

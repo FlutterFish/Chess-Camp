@@ -20,7 +20,7 @@
       <% students.each do |student| %>
         <tr>
           <td><%= link_to student.name, student %></td>
-          <td><%= student.date_of_birth %></td>
+          <td><%= display_date(student.date_of_birth) %></td>
           <td><%= student.rating %></td>
           <% if can? :update, Student %>
           <td><%= link_to 'Edit', edit_student_path(student), :class=>"btn waves-effect waves-light" %></td>
