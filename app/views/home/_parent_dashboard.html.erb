@@ -1,23 +1,17 @@
+<h3>Dashboard</h3>
+
 <div class="row">
   <div class="col s6">
     <div class="card">
       <div class="card-content">
-        <% if @ongoing_registrations.empty? %>
-          <h5>There are no ongoing camps for your children.</h5>
-        <% else %>
-          <%= render :partial => "registrations_list", locals: {registrations: @ongoing_registrations, state: "Ongoing"} %>
-        <% end %>
+        <%= render :partial => "registrations_list", locals: {registrations: @ongoing_registrations, state: "Ongoing"} %>
       </div>
     </div>
   </div>
   <div class="col s6">
     <div class="card">
       <div class="card-content">
-        <% if @upcoming_registrations.empty? %>
-          <h3>There are no upcoming camps for your children.</h3>
-        <% else %>
-          <%= render :partial => "registrations_list", locals: {registrations: @upcoming_registrations, state: "Upcoming"} %>
-        <% end %>
+        <%= render :partial => "registrations_list", locals: {registrations: @upcoming_registrations, state: "Upcoming"} %>
       </div>
     </div>
   </div>

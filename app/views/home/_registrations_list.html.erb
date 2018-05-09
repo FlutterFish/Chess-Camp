@@ -1,5 +1,7 @@
-  <h4><%= state %> Camps</h4>
-
+<h4><%= state %> Camps</h4>
+<% if registrations.empty? %>
+  <p>There are no <%= state.downcase %> camps for your children.</p>
+<% else %>
   <table>
     <thead>
       <tr>
@@ -25,3 +27,4 @@
   <span class="paginate">
     <%= will_paginate registrations, :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next" %>
   </span>
+<% end %>
