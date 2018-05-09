@@ -1,7 +1,14 @@
 <div>
   <div class="card">
     <div class="card-content">
-      <span class="card-title">Students in this Family</span>
+      
+      <span class="card-title">
+        <% if current_user.role?(:parent) %>
+          My Children
+        <% else %>
+          Students in this Family
+        <% end %>
+      </span>
       <% if @students.empty? %>
   		<p>No students at this time</p>
   	  <% else %>
@@ -14,9 +21,15 @@
         </ul>
       <% end %>
     <% if can? :new, Student %>
-      <div class="card-action">
-        <%= link_to "Add a new student", new_student_path(family_id: @family.id) %>
-      </div>
+      <% if current_user.role?(:parent) %>
+          <div class="card-action">
+            <%= link_to "Add a new child", new_student_path(family_id: @family.id) %>
+          </div>
+      <% else %>
+          <div class="card-action">
+            <%= link_to "Add a new student", new_student_path(family_id: @family.id) %>
+          </div>
+      <% end %>
     <% end %>
     </div>
   </div>

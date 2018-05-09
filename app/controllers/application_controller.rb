@@ -29,4 +29,15 @@ class ApplicationController < ActionController::Base
   def check_login
     redirect_to login_path, alert: "You need to log in to view this page." if current_user.nil?
   end
+  
+  def check_can_dashboard
+    unless logged_in? && (current_user.role?(:admin) || current_user.role?(:parent))
+      redirect_to login_path, alert: "You need to log in to view this page."
+    end
+  end
+  
+  def display_date(date)
+    date.strftime("%b %d, %Y")
+  end
+  helper_method :display_date
 end

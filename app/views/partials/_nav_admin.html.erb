@@ -1,17 +1,18 @@
 <nav id="nav">
   <div class="container">
     <ul class="left hide-on-med-and-down">
+      <li><%= link_to 'Dashboard', dashboard_path %></li>
       <li><%= link_to 'Curriculums', curriculums_path %></li>
       <li><%= link_to 'Camps', camps_path %></li>
       <li><%= link_to 'Instructors', instructors_path %></li>
       <li><%= link_to 'Locations', locations_path %></li>
       <li><%= link_to 'Families', families_path %></li>
       <li><%= link_to 'Students', students_path %></li>
+      <li><%= link_to 'Registrations', registrations_path %></li>
       <li><%= link_to 'Cart', carts_path %></li>
     </ul>
     <div style="color: #ffd600;" class="right" id="login">
       <%= link_to 'Logout', logout_path %>
-      <%= current_user.username %>:<%= current_user.role %>
 		</div>
   </div>
 </nav>

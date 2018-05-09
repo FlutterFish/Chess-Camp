@@ -1,0 +1,9 @@
+<% if @ongoing_and_upcoming_registrations.empty? %>
+  <h3>There are no ongoing or upcoming registrations in the system at this time</h3>
+<% else %>
+  <%= render :partial => "registrations_list", locals: {registrations: @ongoing_and_upcoming_registrations, state: "Ongoing and Upcoming"} %>
+<% end %>
+<br>
+<% unless @pastregistrations.empty? %>
+  <%= render :partial => "registrations_list", locals: {registrations: @past_registrations, state: "Past"} %>
+<% end %>

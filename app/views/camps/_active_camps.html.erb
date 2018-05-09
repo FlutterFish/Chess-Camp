@@ -21,7 +21,7 @@
     <% @active_camps.active.each do |camp| %>
       <tr>
         <td><%= link_to camp.curriculum.name, camp %></td>
-        <td><%= camp.start_date.strftime("%m/%d/%y") %></td>
+        <td><%= display_date(camp.start_date) %></td>
         <td><%= camp.time_slot == "am" ? "Morning" : "Afternoon" %></td>
         <td><%= camp.max_students %></td>
         <td><%= camp.max_students - camp.registrations.count %></td>

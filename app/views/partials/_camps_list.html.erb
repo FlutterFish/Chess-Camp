@@ -14,7 +14,7 @@
             <tr>
               <td><%= link_to camp.name, camp_path(camp) %></td>
               <td><%= link_to camp.location.name, location_path(camp.location) %></td>
-              <td>&nbsp;<%= camp.start_date.strftime("%m/%d/%y") %></td>
+              <td>&nbsp;<%= display_date(camp.start_date) %></td>
             </tr>
           <% end %>
       </table>

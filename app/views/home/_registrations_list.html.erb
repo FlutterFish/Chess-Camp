@@ -1,0 +1,27 @@
+  <h4><%= state %> Camps</h4>
+
+  <table>
+    <thead>
+      <tr>
+        <th>Camp Name</th>
+        <th>Child Name</th>
+        <th>Start Date</th>
+        <th>End Date</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <% registrations.each do |reg| %>
+        <tr>
+          <td><%= link_to reg.camp.name, camp_path(reg.camp) %></td>
+          <td><%= link_to reg.student.first_name, student_path(reg.student) %></td>
+          <td><%= display_date(reg.camp.start_date) %></td>
+          <td><%= display_date(reg.camp.end_date) %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+
+  <span class="paginate">
+    <%= will_paginate registrations, :previous_label => "Previous&nbsp;", :next_label => "&nbsp;Next" %>
+  </span>

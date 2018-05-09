@@ -24,6 +24,10 @@ class Registration < ApplicationRecord
 
   # scopes
   scope :for_camp, ->(camp_id) { where(camp_id: camp_id) }
+  scope :ongoing, -> { joins(:camp).where('end_date >= ? and start_date <= ?', Date.today, Date.today) }
+  scope :upcoming, -> { joins(:camp).where('start_date > ?', Date.today) }
+  scope :past, -> { joins(:camp).where('end_date < ?', Date.today) }
+  scope :ongoing_or_upcoming, -> { joins(:camp).where('end_date >= ?', Date.today) }
   scope :alphabetical, -> { joins(:student).order('students.last_name, students.first_name') }
 
   # other methods

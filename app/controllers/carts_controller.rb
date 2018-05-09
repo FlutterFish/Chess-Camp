@@ -1,5 +1,6 @@
 class CartsController < ApplicationController
   include AppHelpers::Cart
+  before_action :check_login
   
   def index
   end

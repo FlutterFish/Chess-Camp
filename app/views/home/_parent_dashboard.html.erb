@@ -1,0 +1,32 @@
+<div class="row">
+  <div class="col s6">
+    <div class="card">
+      <div class="card-content">
+        <% if @ongoing_registrations.empty? %>
+          <h5>There are no ongoing camps for your children.</h5>
+        <% else %>
+          <%= render :partial => "registrations_list", locals: {registrations: @ongoing_registrations, state: "Ongoing"} %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+  <div class="col s6">
+    <div class="card">
+      <div class="card-content">
+        <% if @upcoming_registrations.empty? %>
+          <h3>There are no upcoming camps for your children.</h3>
+        <% else %>
+          <%= render :partial => "registrations_list", locals: {registrations: @upcoming_registrations, state: "Upcoming"} %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>
+<br/>
+<%= link_to(eval("family_path(@family)"), class: "btn waves-effect waves-light") do %>
+  &nbsp;My Profile
+<% end %>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<%= link_to(eval("new_student_path(family_id: @family.id)"), class: "btn waves-effect waves-light") do %>
+  &nbsp;Add a Child
+<% end %>

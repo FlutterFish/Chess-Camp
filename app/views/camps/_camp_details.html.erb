@@ -7,7 +7,7 @@
 
     <h5>Basic Information</h5>
     <p><strong>Location: </strong><%= link_to @camp.location.name, location_path(@camp.location) %></p>
-    <p><strong>Dates: </strong><%= @camp.start_date.strftime("%m/%d/%y") %> - <%= @camp.end_date.strftime("%m/%d/%y") %></p>
+    <p><strong>Dates: </strong><%= display_date(@camp.start_date) %> - <%= display_date(@camp.end_date) %></p>
     <p><strong>Time of Day: </strong><%= @camp.time_slot == "am" ? "Morning" : "Afternoon" %></p>
     <p><strong>Chess Levels: </strong><%= @camp.curriculum.min_rating %> - <%= @camp.curriculum.max_rating %></p>
     <p><strong>Max Enrollment: </strong><%= @camp.max_students %></p>
