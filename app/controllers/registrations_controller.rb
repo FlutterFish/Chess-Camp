@@ -4,7 +4,7 @@ class RegistrationsController < ApplicationController
   
   def index
     @ongoing_and_upcoming_registrations = Registration.ongoing_or_upcoming.paginate(:page => params[:page]).per_page(10)
-    @pastregistrations = Registration.past.paginate(:page => params[:page]).per_page(10)
+    @past_registrations = Registration.past.paginate(:page => params[:page]).per_page(10)
   end
 
   def destroy

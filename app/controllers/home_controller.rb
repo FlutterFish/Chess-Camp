@@ -1,4 +1,4 @@
-·class HomeController < ApplicationController
+class HomeController < ApplicationController
   def index
   end
 
@@ -20,5 +20,4 @@
       @past_registrations = @family.registrations.past.chronological.alphabetical.paginate(:page => params[:page])
     end
   end
-  
 end

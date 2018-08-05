@@ -4,6 +4,6 @@
   <%= render :partial => "registrations_list", locals: {registrations: @ongoing_and_upcoming_registrations, state: "Ongoing and Upcoming"} %>
 <% end %>
 <br>
-<% unless @pastregistrations.empty? %>
+<% unless @past_registrations.empty? %>
   <%= render :partial => "registrations_list", locals: {registrations: @past_registrations, state: "Past"} %>
 <% end %>
